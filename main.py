@@ -1,6 +1,8 @@
 import pygame
 import random
 import time
+import math
+from sys import exit
 from targetcircle import Targetcircle
 
 # set up pygame modules
@@ -14,13 +16,18 @@ size = (800, 600)
 screen = pygame.display.set_mode(size)
 score = 0
 
-instructions = "Welcome to ______!"
-target = Targetcircle(100, 100)
+welcome = "Welcome to ______!"
+start_game = "Start Game!"
+instructions = "Click here for game instructions."
+
 first_click = False
 start_time = time.time()
 time_left = 10
 time_zero = 0
+bg = pygame.image.load("backround.png")
 
+display_start_game = my_font.render(start_game, True, (255, 0, 0))
+display_welcome = my_font.render(welcome, True, (255, 0, 0))
 display_score = my_font.render(("Score: " + str(score)), True, (255, 0, 0))
 display_instructions = my_big_font.render(instructions, True, (255, 0, 0))
 display_time = my_font.render(str(round(time_left, 2)), True, (255, 255, 255))
@@ -46,14 +53,17 @@ while run:
             if time_left > 0 and first_click:
                 start_time = time.time()
                 time_left = 10 - (start_time - current_time)
-                display_time = my_font.render(str(round(time_left, 2)), True, (255, 255, 255)
+                display_time = my_font.render(str(round(time_left, 2)), True, (255, 255, 255))
 
             if time_left <= 0:
                 display_time = my_font.render(str(time_zero), True, (255, 255, 255))
 
 
         else:
-            screen.blit(display_instructions, (172, 200))
+            screen.blit(bg, (0,0))
+            screen.blit(display_welcome, (172, 200))
+            screen.blit(display_start_game, (172, 230))
+            screen.blit(display_instructions, (172, 250))
             pygame.display.update()
 
 pygame.quit()
