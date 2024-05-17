@@ -4,6 +4,7 @@ import math
 from sys import exit
 from settings import *
 from player import Player
+from testing import Test
 
 # set up pygame modules
 pygame.init()
@@ -19,6 +20,8 @@ clock = pygame.time.Clock() #CONTROLS FRAME RATE
 #Loading Images
 bg = pygame.transform.scale(pygame.image.load("backround.png"), (width, height)) #Scales the backround up to our window
 p = Player(player_start_x, player_start_y)
+t = Test(player_start_x, player_start_y)
+testing_dot = pygame.image.load("testing_dot.png")
 
 welcome = "Welcome to ______!"
 start_game = "Start Game!"
@@ -52,6 +55,7 @@ while run:
         #screen.blit(display_start_game, (172, 230))
         #screen.blit(display_instructions, (172, 250))
         screen.blit(p.image, p.pos)
+        screen.blit(t.image, (400, 500))
         p.update()
 
         pygame.display.update()
