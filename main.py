@@ -51,10 +51,7 @@ while run:
             display_instructions_screen = False
 
         screen.blit(bg, (0,0))
-        #screen.blit(display_welcome, (172, 200))
-        #screen.blit(display_start_game, (172, 230))
-        #screen.blit(display_instructions, (172, 250))
-        screen.blit(p.image, p.pos)
+        screen.blit(p.image, p.rect)
         screen.blit(t.image, (400, 500))
         p.update()
 
