@@ -9,3 +9,7 @@ player_speed = 8
 
 #bullet settings
 shoot_cooldown = 20
+bullet_scale = .6
+bullet_speed = 10
+
+
