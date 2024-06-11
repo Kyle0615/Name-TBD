@@ -4,7 +4,7 @@ import math
 from sys import exit
 from settings import *
 from player import Player
-#from game_objects import all_sprites_group, bullet_group
+from game_objects import all_sprites_group, bullet_group
 
 
 # set up pygame modules
@@ -21,9 +21,8 @@ clock = pygame.time.Clock() #CONTROLS FRAME RATE
 
 
 #Loading Images
-bg = pygame.transform.scale(pygame.image.load("backround.png"), (width, height)) #Scales the backround up to our window
-
 p = Player(600, 200)
+bg = pygame.image.load("ground.png")
 
 welcome = "Welcome to ______!"
 start_game = "Start Game!"
@@ -42,14 +41,18 @@ display_time = my_font.render(str(round(time_left, 2)), True, (255, 255, 255))
 run = True
 
 while run:
- keys = pygame.key.get_pressed() #GETS ALL THE KEYS THE USER PRESSES
- for event in pygame.event.get():  # User did something
-     if event.type == pygame.QUIT:  # If user clicked close
-         run = False
-         exit()
+    keys = pygame.key.get_pressed() #GETS ALL THE KEYS THE USER PRESSES
+    for event in pygame.event.get():  # User did something
+        if event.type == pygame.QUIT:  # If user clicked close
+            run = False
+            exit()
 
-    screen.blit(bg, (0,0))
-    screen.blit(p)
+    screen.blit(bg, (-1000, -1000))
+    p.update()
+    screen.blit(p.image, p.rect)
+
+    all_sprites_group.update()
+    all_sprites_group.draw(screen)
 
     pygame.display.update()
     clock.tick(FPS)
